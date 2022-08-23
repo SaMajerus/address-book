@@ -77,6 +77,11 @@ function handleFormSubmission(event) {
   addressBook.addContact(newContact);
   //console.log(addressBook.contacts); 
   listContacts(addressBook); 
+
+  //Empties out each Form field after submission has been handled above. 
+  document.querySelector("input#new-first-name").value = null;   
+  document.querySelector("input#new-last-name").value = null;   
+  document.querySelector("input#new-phone-number").value = null;   
 } 
 
 function handleDelete(event) {
