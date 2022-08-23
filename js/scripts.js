@@ -64,6 +64,7 @@ function displayContactDetails(event) {
   document.querySelector(".first-name").innerText = contact.firstName;
   document.querySelector(".last-name").innerText = contact.lastName;
   document.querySelector(".phone-number").innerText = contact.phoneNumber;
+  document.querySelector("button.delete").setAttribute("id", contact.id);  //Sets 'id' of 'Delete' button to be the same as the contact Object in question. 
   document.querySelector("div#contact-details").removeAttribute("class");
 } 
 
@@ -76,9 +77,17 @@ function handleFormSubmission(event) {
   addressBook.addContact(newContact);
   //console.log(addressBook.contacts); 
   listContacts(addressBook); 
+} 
+
+function handleDelete(event) {
+  addressBook.deleteContact(event.target.id);
+  document.querySelector("button.delete").removeAttribute("id");
+  document.querySelector("div#contact-details").setAttribute("class", "hidden");
+  listContacts(addressBook);
 }
 
 window.addEventListener("load", function (){
   document.querySelector("form#new-contact").addEventListener("submit", handleFormSubmission);
   document.querySelector("div#contacts").addEventListener("click", displayContactDetails);  //Attaches EventListener to 'contacts' div. 
+  document.querySelector("button.delete").addEventListener("click", handleDelete);  //Listens for 'click' event on the Delete button
 });
