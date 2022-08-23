@@ -58,6 +58,15 @@ function listContacts(addressBookToDisplay) {
   contactsDiv.append(ul);
 }
 
+function displayContactDetails(event) {
+  //console.log("The id of this <li> is " + event.target.id + ".");  //"...shows the value of the id attribute of the list item that was clicked" (Lsn 19). 
+  const contact = addressBook.findContact(event.target.id);
+  document.querySelector(".first-name").innerText = contact.firstName;
+  document.querySelector(".last-name").innerText = contact.lastName;
+  document.querySelector(".phone-number").innerText = contact.phoneNumber;
+  document.querySelector("div#contact-details").removeAttribute("class");
+} 
+
 function handleFormSubmission(event) {
   event.preventDefault();
   const inputtedFirstName = document.querySelector("input#new-first-name").value;
@@ -71,4 +80,5 @@ function handleFormSubmission(event) {
 
 window.addEventListener("load", function (){
   document.querySelector("form#new-contact").addEventListener("submit", handleFormSubmission);
+  document.querySelector("div#contacts").addEventListener("click", displayContactDetails);  //Attaches EventListener to 'contacts' div. 
 });
